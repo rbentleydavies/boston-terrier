@@ -1,0 +1,29 @@
+{
+  "name": "boston-terrier",
+  "version": "1.0.0",
+  "description": "Initially this is just setting up an ES6/Node/React environment as a template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbentleydavies/boston-terrier.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rbentleydavies/boston-terrier/issues"
+  },
+  "homepage": "https://github.com/rbentleydavies/boston-terrier#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^3.0.1"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
