@@ -4,7 +4,8 @@
   "description": "Initially this is just setting up an ES6/Node/React environment as a template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack -d & babel-node ./server-src/server.js"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,7 @@
     "webpack": "^4.10.2",
     "webpack-cli": "^3.0.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "socket.io": "^2.1.1"
+  }
 }

@@ -1,10 +1,10 @@
 import http from 'http'
 import fs from 'fs'
 import path from 'path'
-
+import Io from 'socket.io'
 const indexHtmlContent = fs.readFileSync(path.join(__dirname, '/../dist/index.html'))
 
-http.createServer((req, res) => {
+const httpServer = http.createServer((req, res) => {
   if (req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/html' })
     res.end(indexHtmlContent)
@@ -16,6 +16,12 @@ http.createServer((req, res) => {
     res.writeHead(404, { 'Content-Type': 'text/plain' })
     res.end('Not found')
   }
-}).listen(8080)
-
+})
+var socketServer = new Io(http)
+socketServer.on('connection', socket => {
+  console.log('connection')
+  socket.emit('welcome', 'Welcome to the connection')
+})
+socketServer.attach(httpServer)
+httpServer.listen(8080)
 console.log('Server running at http://127.0.0.1:8080/')
