@@ -17,11 +17,36 @@ const httpServer = http.createServer((req, res) => {
     res.end('Not found')
   }
 })
+var games = {}
 var socketServer = new Io(http)
 socketServer.on('connection', socket => {
   console.log('connection')
   socket.emit('welcome', 'Welcome to the connection')
   socket.on('message', msg => { socket.emit('welcome', `You typed '${msg}'`) })
+  socket.on('find-game', () => {
+
+  })
+  socket.on('join', (gameId, playerId) => {
+    let game = games[ gameId ]
+    if (!game) {
+      game = { id: gameId, white: playerId, black: null }
+      games[gameId] = game
+    }
+    if (game.white === playerId) {
+      game.whiteSocket = socket
+    } else {
+      if (game.black === playerId || game.black === null) {
+        game.black = playerId
+        game.blackSocket = socket
+      }
+    }
+    if (!game.blackSocket) {
+      game.whiteSocket.emit('welcome', 'Please wait for another player to join')
+    } else {
+      game.whiteSocket.emit('welcome', 'Starting game, you will play WHITE')
+      game.blackSocket.emit('welcome', 'Starting game, you will play BLACK')
+    }
+  })
 })
 socketServer.attach(httpServer)
 httpServer.listen(8080)

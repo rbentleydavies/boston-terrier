@@ -5,12 +5,14 @@ export default class HelloComponent extends Component {
   constructor (props) {
     super(props)
     this.state = { message: 'here is the message' }
+    this.playerId = `P${Math.random()}`
   }
   componentDidMount () {
     this.setState({ message: 'new message' })
     this.socket = io({ autoConnect: false })
     this.socket.on('connect', conn => {
       console.log('connected', conn)
+      this.socket.emit('join', 1, this.playerId)
     })
     this.socket.on('welcome', message => {
       console.log('welcome', message)
