@@ -1,3 +1,12 @@
-import $ from 'jquery'
+/* eslint-disable no-new */
+/* eslint-disable no-unused-vars */
+import domReady from 'domready'
+import Hello from './hello-container'
+class App {
+  constructor () {
+    new Hello('#content')
+  }
+}
 
-$('#content').html('Hello, World!')
+window.domReady = domReady
+window.App = App
