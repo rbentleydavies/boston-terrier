@@ -8,20 +8,25 @@ export default class HelloComponent extends Component {
   }
   componentDidMount () {
     this.setState({ message: 'new message' })
-    var socket = io({ autoConnect: false })
-    socket.on('connect', conn => {
+    this.socket = io({ autoConnect: false })
+    this.socket.on('connect', conn => {
       console.log('connected', conn)
     })
-    socket.on('welcome', message => {
+    this.socket.on('welcome', message => {
       console.log('welcome', message)
       this.setState({ message: message })
     })
-    socket.connect()
+    this.socket.connect()
+  }
+  onTextBox1Change = (event) => {
+    console.log('event', event.target.value)
+    this.socket.emit('message', event.target.value)
   }
   render () {
     return (
       <div>
         {this.state.message}
+        <input id='textBox1' onChange={this.onTextBox1Change} />
       </div>
     )
   }

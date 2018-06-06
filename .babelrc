@@ -1,3 +1,39 @@
 {
-  "presets": ["env", "react"]
+  "presets": [
+    [
+      "env"
+    ]
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-decorators",
+    "transform-function-bind",
+    "transform-do-expressions",
+    "transform-react-jsx",
+    "transform-export-extensions",
+    "syntax-dynamic-import",
+    "syntax-async-functions",
+    "transform-regenerator",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./"
+        ],
+        "alias": {
+
+        }
+      }
+    ]
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-decorators-legacy",
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements"
+      ]
+    }
+  }
 }

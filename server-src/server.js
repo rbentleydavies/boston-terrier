@@ -21,6 +21,7 @@ var socketServer = new Io(http)
 socketServer.on('connection', socket => {
   console.log('connection')
   socket.emit('welcome', 'Welcome to the connection')
+  socket.on('message', msg => { socket.emit('welcome', `You typed '${msg}'`) })
 })
 socketServer.attach(httpServer)
 httpServer.listen(8080)
