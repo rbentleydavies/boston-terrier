@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -d & babel-node ./server-src/server.js"
+    "dev": "webpack -d & babel-node ./server-src/server.js",
+    "postinstall": "webpack -p & babel ./server-src --out-dir ./server-app",
+    "start": "node ./server-app/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,10 @@
   },
   "homepage": "https://github.com/rbentleydavies/boston-terrier#readme",
   "devDependencies": {
+
+  },
+  "dependencies": {
+    "babel-preset-es2016": "^6.24.1",
     "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
@@ -41,8 +47,5 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.8",
     "babel-plugin-transform-regenerator": "^6.26.0"
-  },
-  "dependencies": {
-    "babel-preset-es2016": "^6.24.1"
-  }
+    }
 }
