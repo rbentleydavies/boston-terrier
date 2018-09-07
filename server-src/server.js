@@ -27,6 +27,7 @@ socketServer.on('connection', socket => {
 
   })
   socket.on('join', (gameId, playerId) => {
+    console.log('join request:', gameId, playerId)
     let game = games[ gameId ]
     if (!game) {
       game = { id: gameId, white: playerId, black: null }
@@ -34,11 +35,13 @@ socketServer.on('connection', socket => {
     }
     if (game.white === playerId) {
       game.whiteSocket = socket
+    } else if (game.black === playerId || game.black === null) {
+      game.black = playerId
+      game.blackSocket = socket
     } else {
-      if (game.black === playerId || game.black === null) {
-        game.black = playerId
-        game.blackSocket = socket
-      }
+      console.log(`game ${gameId} is already full`)
+      socket.emit('game-found', 1 + gameId)
+      return
     }
     if (!game.blackSocket) {
       game.whiteSocket.emit('welcome', 'Please wait for another player to join')
