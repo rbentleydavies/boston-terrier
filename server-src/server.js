@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import Io from 'socket.io'
 const indexHtmlContent = fs.readFileSync(path.join(__dirname, '/../dist/index.html'))
-
+const PORT = process.env.PORT || 5000
 const httpServer = http.createServer((req, res) => {
   if (req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/html' })
@@ -52,5 +52,5 @@ socketServer.on('connection', socket => {
   })
 })
 socketServer.attach(httpServer)
-httpServer.listen(80)
-console.log('Server running at http://127.0.0.1:80/')
+httpServer.listen(PORT)
+console.log('Server running at http://127.0.0.1:' + PORT + '/')
