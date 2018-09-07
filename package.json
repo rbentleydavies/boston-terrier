@@ -19,9 +19,7 @@
     "url": "https://github.com/rbentleydavies/boston-terrier/issues"
   },
   "homepage": "https://github.com/rbentleydavies/boston-terrier#readme",
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "dependencies": {
     "babel-preset-es2016": "^6.24.1",
     "babel-cli": "^6.26.0",
@@ -47,5 +45,5 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.8",
     "babel-plugin-transform-regenerator": "^6.26.0"
-    }
+  }
 }
