@@ -2,3 +2,4 @@
 node_modules/
 dist/bundle.js
 server-app/server.js
+package-lock.json
